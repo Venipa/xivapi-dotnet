@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XIVApi.AspNetCore\XIVApi.AspNetCore.csproj" />
     <ProjectReference Include="..\XIVApi\XIVApi.csproj" />
   </ItemGroup>
 

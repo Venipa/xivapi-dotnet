@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XIVApi", "XIVApi\XIVApi.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XIVApi.TestApp", "XIVApi.TestApp\XIVApi.TestApp.csproj", "{B31B5F43-12EC-4EE5-9405-8893F6215B3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XIVApi.AspNetCore", "XIVApi.AspNetCore\XIVApi.AspNetCore.csproj", "{3DD19026-1D8E-4AE3-A6FE-DE1857141BC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD19026-1D8E-4AE3-A6FE-DE1857141BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD19026-1D8E-4AE3-A6FE-DE1857141BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD19026-1D8E-4AE3-A6FE-DE1857141BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD19026-1D8E-4AE3-A6FE-DE1857141BC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,15 +5,18 @@
     <Authors>Sam Hill</Authors>
     <Product>XIVApi Wrapper</Product>
     <Version>0.1.0</Version>
-    <PackageId>XIVApi-Wrapper</PackageId>
+    <PackageId>XIVApi-Wrapper.AspNetCore</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sammhill/xivapi-dotnet</PackageProjectUrl>
-    <AssemblyName>XIVApi-DotNet</AssemblyName>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\XIVApi\XIVApi.csproj" />
+  </ItemGroup>
+  
 </Project>

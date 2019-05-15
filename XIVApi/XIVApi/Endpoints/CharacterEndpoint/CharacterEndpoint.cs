@@ -22,8 +22,8 @@ namespace XIVApi.Endpoints.CharacterEndpoint
 
         public CharacterEndpoint(IRequester requester, ICache cache)
         {
-            _requester = requester ?? throw new ArgumentNullException(nameof(requester));
-            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            _requester = requester ?? throw new ArgumentNullException(nameof(IRequester));
+            _cache = cache ?? throw new ArgumentNullException(nameof(ICache));
         }
 
         public async Task<Character> GetCharacterByNameAsync(string characterName, FFXIVServer server)
