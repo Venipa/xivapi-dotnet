@@ -20,7 +20,7 @@ namespace XIVApi.TestApp.Controllers
             var api = XIVApi.GetInstance(new Cache());
             if (Enum.TryParse(typeof(FFXIVServer), server, out var ffServer))
             {
-                var searchResult = await api.Character.GetCharacterByNameAsync("Waifu Pillow", FFXIVServer.Shiva);
+                var searchResult = await api.Character.GetCharacterByNameAsync(characterName, (FFXIVServer)ffServer);
                 if (searchResult != null)
                 {
                     return new JsonResult(searchResult);
