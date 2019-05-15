@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XIVApi", "XIVApi\XIVApi.csproj", "{D995081C-B74F-4B1B-A422-A992DBB4D519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XIVApi.TestApp", "XIVApi.TestApp\XIVApi.TestApp.csproj", "{B31B5F43-12EC-4EE5-9405-8893F6215B3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D995081C-B74F-4B1B-A422-A992DBB4D519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D995081C-B74F-4B1B-A422-A992DBB4D519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D995081C-B74F-4B1B-A422-A992DBB4D519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D995081C-B74F-4B1B-A422-A992DBB4D519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31B5F43-12EC-4EE5-9405-8893F6215B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1402F045-B140-4EDA-96AE-83ACF2D81FB6}
+	EndGlobalSection
+EndGlobal
