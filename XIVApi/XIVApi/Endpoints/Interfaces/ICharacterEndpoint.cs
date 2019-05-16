@@ -14,5 +14,6 @@ namespace XIVApi.Endpoints.Interfaces
 
         Task<CharacterProfile> GetCharacterByIdAsync(string lodestoneId, bool extended);
 
+        Task<CharacterVerification> GetCharacterVerification(string lodestoneId);
     }
 }

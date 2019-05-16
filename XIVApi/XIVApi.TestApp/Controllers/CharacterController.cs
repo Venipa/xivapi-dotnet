@@ -27,7 +27,7 @@ namespace XIVApi.TestApp.Controllers
         {
             if (Enum.TryParse(typeof(FFXIVServer), server, out var ffServer))
             {
-                var searchResult = await _api.Character.GetCharacterByNameAsync(characterName, (FFXIVServer)ffServer);
+                var searchResult = await _api.Character.GetCharacterByNameAsync(characterName, (FFXIVServer)ffServer).ConfigureAwait(false);
                 if (searchResult != null)
                 {
                     return new JsonResult(searchResult);
@@ -40,7 +40,7 @@ namespace XIVApi.TestApp.Controllers
         [HttpGet()]
         public async Task<ActionResult<string>> GetCharacterById([FromQuery] string lodestoneId)
         {
-            var characterResult = await _api.Character.GetCharacterByIdAsync(lodestoneId, true);
+            var characterResult = await _api.Character.GetCharacterByIdAsync(lodestoneId, true).ConfigureAwait(false);
             if (characterResult != null)
             {
                 return new JsonResult(characterResult);
@@ -48,5 +48,16 @@ namespace XIVApi.TestApp.Controllers
             return new NotFoundObjectResult(lodestoneId);
         }
 
+        [Route("api/character/verification")]
+        [HttpGet()]
+        public async Task<ActionResult<string>> GetCharacterVerification([FromQuery] string lodestoneId)
+        {
+            var verificationResult = await _api.Character.GetCharacterVerification(lodestoneId).ConfigureAwait(false);
+            if (verificationResult != null)
+            {
+                return new JsonResult(verificationResult);
+            }
+            return new NotFoundObjectResult(lodestoneId);
+        }
     }
 }

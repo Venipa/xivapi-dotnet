@@ -17,6 +17,7 @@ namespace XIVApi.Endpoints.CharacterEndpoint
         private const string CharacterSearchCache = "charactersearch-{0}-{1}";
         private const string CharacterFetchUrl = "/character/{0}";
         private const string CharacterCache = "character-{0}-{1}";
+        private const string CharacterVerificationUrl = "/character/{0}/verification";
         private static readonly TimeSpan CharacterTtl = TimeSpan.FromDays(7);
 
         private readonly IRequester _requester;
@@ -38,9 +39,9 @@ namespace XIVApi.Endpoints.CharacterEndpoint
                 return characterProfileInCache;
             }
 
-            var fetchUrl = String.Format(CharacterFetchUrl, lodestoneId);
+            var fetchUrl = string.Format(CharacterFetchUrl, lodestoneId);
             var jsonResponse = await _requester.CreateGetRequestAsync(
-                fetchUrl, new List<string> { $"extended={extendedResponse}", $"data=AC,FR,FC,FCM,PVP" });
+                fetchUrl, new List<string> { $"extended={extendedResponse}", $"data=AC,FR,FC,FCM,PVP" }).ConfigureAwait(false);
 
             var queryResult = JsonConvert.DeserializeObject<CharacterProfile>(jsonResponse);
 
@@ -60,11 +61,11 @@ namespace XIVApi.Endpoints.CharacterEndpoint
                 return characterSearchInCache;
             }
             var jsonResponse = await _requester.CreateGetRequestAsync(
-                CharacterSearchUrl, new List<string> { $"name={characterName}", $"server={server}" });
+                CharacterSearchUrl, new List<string> { $"name={characterName}", $"server={server}" }).ConfigureAwait(false);
 
             var queryResult = JsonConvert.DeserializeObject<QueryResult>(jsonResponse);
 
-            if (queryResult.Characters != null && queryResult.Characters.Any())
+            if (queryResult.Characters?.Any() == true)
             {
                 foreach (var character in queryResult.Characters)
                 {
@@ -73,6 +74,15 @@ namespace XIVApi.Endpoints.CharacterEndpoint
                 return queryResult.Characters.FirstOrDefault();
             }
             return null;
+        }
+
+        public async Task<CharacterVerification> GetCharacterVerification(string lodestoneId)
+        {
+            var jsonResponse = await _requester.CreateGetRequestAsync(
+                string.Format(CharacterVerificationUrl, lodestoneId)).ConfigureAwait(false);
+
+            var queryResult = JsonConvert.DeserializeObject<CharacterVerification>(jsonResponse);
+            return queryResult;
         }
     }
 }
