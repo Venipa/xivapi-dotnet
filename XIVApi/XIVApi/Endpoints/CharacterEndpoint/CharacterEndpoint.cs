@@ -14,6 +14,8 @@ namespace XIVApi.Endpoints.CharacterEndpoint
     public class CharacterEndpoint : ICharacterEndpoint
     {
         private const string CharacterSearchUrl = "/character/search";
+        private const string CharacterSearchCache = "charactersearch-{0}-{1}";
+        private const string CharacterFetchUrl = "/character/{0}";
         private const string CharacterCache = "character-{0}-{1}";
         private static readonly TimeSpan CharacterTtl = TimeSpan.FromDays(7);
 
@@ -26,12 +28,36 @@ namespace XIVApi.Endpoints.CharacterEndpoint
             _cache = cache ?? throw new ArgumentNullException(nameof(ICache));
         }
 
-        public async Task<Character> GetCharacterByNameAsync(string characterName, FFXIVServer server)
+        public async Task<CharacterProfile> GetCharacterByIdAsync(string lodestoneId, bool extended)
         {
-            var characterInCache = _cache.Get<string, Character>(string.Format(CharacterCache, characterName, server));
-            if (characterInCache != null)
+            var extendedResponse = extended ? 1 : 0;
+
+            var characterProfileInCache = _cache.Get<string, CharacterProfile>(string.Format(CharacterCache, lodestoneId, extendedResponse));
+            if (characterProfileInCache != null)
             {
-                return characterInCache;
+                return characterProfileInCache;
+            }
+
+            var fetchUrl = String.Format(CharacterFetchUrl, lodestoneId);
+            var jsonResponse = await _requester.CreateGetRequestAsync(
+                fetchUrl, new List<string> { $"extended={extendedResponse}", $"data=AC,FR,FC,FCM,PVP" });
+
+            var queryResult = JsonConvert.DeserializeObject<CharacterProfile>(jsonResponse);
+
+            if (queryResult.Character != null)
+            {
+                _cache.Add(string.Format(CharacterCache, lodestoneId, extendedResponse), queryResult, CharacterTtl);
+                return queryResult;
+            }
+            return null;
+        }
+
+        public async Task<CharacterSearch> GetCharacterByNameAsync(string characterName, FFXIVServer server)
+        {
+            var characterSearchInCache = _cache.Get<string, CharacterSearch>(string.Format(CharacterSearchCache, characterName, server));
+            if (characterSearchInCache != null)
+            {
+                return characterSearchInCache;
             }
             var jsonResponse = await _requester.CreateGetRequestAsync(
                 CharacterSearchUrl, new List<string> { $"name={characterName}", $"server={server}" });
@@ -42,7 +68,7 @@ namespace XIVApi.Endpoints.CharacterEndpoint
             {
                 foreach (var character in queryResult.Characters)
                 {
-                    _cache.Add(string.Format(CharacterCache, characterName, server), character, CharacterTtl);
+                    _cache.Add(string.Format(CharacterSearchCache, characterName, server), character, CharacterTtl);
                 }
                 return queryResult.Characters.FirstOrDefault();
             }

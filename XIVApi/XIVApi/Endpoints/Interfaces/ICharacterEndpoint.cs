@@ -10,6 +10,9 @@ namespace XIVApi.Endpoints.Interfaces
 {
     public interface ICharacterEndpoint
     {
-        Task<Character> GetCharacterByNameAsync(string characterName, FFXIVServer server);
+        Task<CharacterSearch> GetCharacterByNameAsync(string characterName, FFXIVServer server);
+
+        Task<CharacterProfile> GetCharacterByIdAsync(string lodestoneId, bool extended);
+
     }
 }

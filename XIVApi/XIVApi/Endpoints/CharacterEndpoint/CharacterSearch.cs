@@ -5,7 +5,7 @@ using XIVApi.Misc;
 
 namespace XIVApi.Endpoints.CharacterEndpoint
 {
-    public class Character
+    public class CharacterSearch
     {
         public string Avatar { get; set; }
         public int FeastMatches { get; set; }

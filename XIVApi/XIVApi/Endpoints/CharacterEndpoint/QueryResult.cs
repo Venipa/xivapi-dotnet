@@ -10,6 +10,6 @@ namespace XIVApi.Endpoints.CharacterEndpoint
     public class QueryResult
     {
         [JsonProperty("Results")]
-        public List<Character> Characters { get; set; }
+        public List<CharacterSearch> Characters { get; set; }
     }
 }

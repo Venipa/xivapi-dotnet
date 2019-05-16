@@ -9,7 +9,6 @@ using XIVApi.Misc;
 
 namespace XIVApi.TestApp.Controllers
 { 
-    [Route("api/character")]
     [ApiController]
     public class CharacterController : ControllerBase
     {
@@ -22,9 +21,9 @@ namespace XIVApi.TestApp.Controllers
             _cache = cache;
         }
 
-        // GET api/values/5
+        [Route("api/character/search")]
         [HttpGet]
-        public async Task<ActionResult<string>> Get([FromQuery]string characterName, [FromQuery]string server)
+        public async Task<ActionResult<string>> SearchCharacterByName([FromQuery]string characterName, [FromQuery]string server)
         {
             if (Enum.TryParse(typeof(FFXIVServer), server, out var ffServer))
             {
@@ -36,5 +35,18 @@ namespace XIVApi.TestApp.Controllers
             }
             return new NotFoundObjectResult(characterName);
         }
+
+        [Route("api/character/profile")]
+        [HttpGet()]
+        public async Task<ActionResult<string>> GetCharacterById([FromQuery] string lodestoneId)
+        {
+            var characterResult = await _api.Character.GetCharacterByIdAsync(lodestoneId, true);
+            if (characterResult != null)
+            {
+                return new JsonResult(characterResult);
+            }
+            return new NotFoundObjectResult(lodestoneId);
+        }
+
     }
 }
