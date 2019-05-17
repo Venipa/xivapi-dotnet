@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using XIVApi.Caching;
 using XIVApi.Endpoints.CharacterEndpoint;
 using XIVApi.Misc;
@@ -58,6 +59,15 @@ namespace XIVApi.TestApp.Controllers
                 return new JsonResult(verificationResult);
             }
             return new NotFoundObjectResult(lodestoneId);
+        }
+
+        [Route("api/character/update")]
+        [HttpGet]
+        public async Task<ActionResult<string>> RequestCharacterUpdate([FromQuery] string lodestoneId)
+        {
+            var result = await _api.Character.RequestCharacterUpdate(lodestoneId).ConfigureAwait(false);
+
+            return new JsonResult(result);
         }
     }
 }

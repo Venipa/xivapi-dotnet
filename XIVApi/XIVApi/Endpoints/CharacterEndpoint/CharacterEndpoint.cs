@@ -18,6 +18,7 @@ namespace XIVApi.Endpoints.CharacterEndpoint
         private const string CharacterFetchUrl = "/character/{0}";
         private const string CharacterCache = "character-{0}-{1}";
         private const string CharacterVerificationUrl = "/character/{0}/verification";
+        private const string CharacterRequestUpdateUrl = "/character/{0}/update";
         private static readonly TimeSpan CharacterTtl = TimeSpan.FromDays(7);
 
         private readonly IRequester _requester;
@@ -83,6 +84,19 @@ namespace XIVApi.Endpoints.CharacterEndpoint
 
             var queryResult = JsonConvert.DeserializeObject<CharacterVerification>(jsonResponse);
             return queryResult;
+        }
+
+        public async Task<bool> RequestCharacterUpdate(string lodestoneId)
+        {
+            var response = await _requester.CreateGetRequestAsync(
+                string.Format(CharacterRequestUpdateUrl, lodestoneId)).ConfigureAwait(false);
+
+            if (response != null)
+            {
+                return string.Equals(response, "1");
+            }
+
+            return false;
         }
     }
 }
