@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Sam Hill</Authors>
-    <Product>XIVApi Wrapper</Product>
+    <Product>XIVApi .NET Wrapper</Product>
     <Version>0.1.0</Version>
     <PackageId>XIVApi-Wrapper</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sammhill/xivapi-dotnet</PackageProjectUrl>
     <AssemblyName>XIVApi-DotNet</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A .NET API Wrapper for XIVAPI.com. Handles caching and API Rate limits.</Description>
   </PropertyGroup>
 
   <ItemGroup>
