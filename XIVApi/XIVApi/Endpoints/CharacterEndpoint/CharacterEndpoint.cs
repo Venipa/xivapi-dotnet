@@ -19,7 +19,7 @@ namespace XIVApi.Endpoints.CharacterEndpoint
         private const string CharacterCache = "character-{0}-{1}";
         private const string CharacterVerificationUrl = "/character/{0}/verification";
         private const string CharacterRequestUpdateUrl = "/character/{0}/update";
-        private static readonly TimeSpan CharacterTtl = TimeSpan.FromDays(7);
+        private static readonly TimeSpan CharacterTtl = TimeSpan.FromHours(1);
 
         private readonly IRequester _requester;
         private readonly ICache _cache;
